@@ -13,3 +13,19 @@ D:\!FTN\!HCI VEZBE\2023-24\PZ2\Visual Studio\NetworkService\NetworkService\Netwo
 D:\!FTN\!HCI VEZBE\2023-24\PZ2\Visual Studio\NetworkService\NetworkService\NetworkService\obj\Debug\NetworkService.csproj.CoreCompileInputs.cache
 D:\!FTN\!HCI VEZBE\2023-24\PZ2\Visual Studio\NetworkService\NetworkService\NetworkService\obj\Debug\NetworkService.exe
 D:\!FTN\!HCI VEZBE\2023-24\PZ2\Visual Studio\NetworkService\NetworkService\NetworkService\obj\Debug\NetworkService.pdb
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat2\PSI IUIS - PZ2 - NetworkService i Metering Simulator\PZ2\NetworkService\NetworkService\NetworkService\bin\Debug\NetworkService.exe.config
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat2\PSI IUIS - PZ2 - NetworkService i Metering Simulator\PZ2\NetworkService\NetworkService\NetworkService\bin\Debug\NetworkService.exe
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat2\PSI IUIS - PZ2 - NetworkService i Metering Simulator\PZ2\NetworkService\NetworkService\NetworkService\bin\Debug\NetworkService.pdb
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat2\PSI IUIS - PZ2 - NetworkService i Metering Simulator\PZ2\NetworkService\NetworkService\NetworkService\obj\Debug\NetworkService.csproj.AssemblyReference.cache
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat2\PSI IUIS - PZ2 - NetworkService i Metering Simulator\PZ2\NetworkService\NetworkService\NetworkService\obj\Debug\NetworkService.csproj.SuggestedBindingRedirects.cache
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat2\PSI IUIS - PZ2 - NetworkService i Metering Simulator\PZ2\NetworkService\NetworkService\NetworkService\obj\Debug\MainWindow.g.cs
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat2\PSI IUIS - PZ2 - NetworkService i Metering Simulator\PZ2\NetworkService\NetworkService\NetworkService\obj\Debug\App.g.cs
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat2\PSI IUIS - PZ2 - NetworkService i Metering Simulator\PZ2\NetworkService\NetworkService\NetworkService\obj\Debug\NetworkService_MarkupCompile.cache
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat2\PSI IUIS - PZ2 - NetworkService i Metering Simulator\PZ2\NetworkService\NetworkService\NetworkService\obj\Debug\NetworkService_MarkupCompile.lref
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat2\PSI IUIS - PZ2 - NetworkService i Metering Simulator\PZ2\NetworkService\NetworkService\NetworkService\obj\Debug\MainWindow.baml
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat2\PSI IUIS - PZ2 - NetworkService i Metering Simulator\PZ2\NetworkService\NetworkService\NetworkService\obj\Debug\NetworkService.g.resources
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat2\PSI IUIS - PZ2 - NetworkService i Metering Simulator\PZ2\NetworkService\NetworkService\NetworkService\obj\Debug\NetworkService.Properties.Resources.resources
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat2\PSI IUIS - PZ2 - NetworkService i Metering Simulator\PZ2\NetworkService\NetworkService\NetworkService\obj\Debug\NetworkService.csproj.GenerateResource.cache
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat2\PSI IUIS - PZ2 - NetworkService i Metering Simulator\PZ2\NetworkService\NetworkService\NetworkService\obj\Debug\NetworkService.csproj.CoreCompileInputs.cache
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat2\PSI IUIS - PZ2 - NetworkService i Metering Simulator\PZ2\NetworkService\NetworkService\NetworkService\obj\Debug\NetworkService.exe
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat2\PSI IUIS - PZ2 - NetworkService i Metering Simulator\PZ2\NetworkService\NetworkService\NetworkService\obj\Debug\NetworkService.pdb
