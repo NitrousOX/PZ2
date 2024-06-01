@@ -7,17 +7,53 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+
 namespace NetworkService.ViewModel
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : BindableBase
     {
         private int count = 15; // Inicijalna vrednost broja objekata u sistemu
                                 // ######### ZAMENITI stvarnim brojem elemenata
                                 //           zavisno od broja entiteta u listi
 
+        private NetworkEntitiesViewModel EntitiyView = new NetworkEntitiesViewModel();
+        private MeasurmentGraphViewModel GraphView = new MeasurmentGraphViewModel();
+        private NetworkDisplayViewModel DisplayView = new NetworkDisplayViewModel();
+        private BindableBase currentViewModel;
+        public MyICommand<string> NavCommand { get;private set; }
+
+        public BindableBase CurrentViewModel
+        {
+            get
+            {
+                return currentViewModel;
+            }
+
+            set
+            {
+                SetProperty(ref currentViewModel, value);
+            }
+        }
         public MainWindowViewModel()
         {
             createListener(); //Povezivanje sa serverskom aplikacijom
+            NavCommand = new MyICommand<string>(OnNav);
+            CurrentViewModel = EntitiyView;
+        }
+        private void OnNav(string destination)
+        {
+            switch (destination)
+            {
+                case "entity":
+                    CurrentViewModel = EntitiyView;
+                    break;
+                case "display":
+                    CurrentViewModel = DisplayView;
+                    break;
+                case "graph":
+                    CurrentViewModel = GraphView;
+                    break;
+            }
         }
 
         private void createListener()

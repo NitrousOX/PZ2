@@ -4,9 +4,52 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NetworkService"
+        xmlns:viewModel="clr-namespace:NetworkService.ViewModel"
+        xmlns:views="clr-namespace:NetworkService.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+    <Window.DataContext>
+        <viewModel:MainWindowViewModel />
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:NetworkEntitiesViewModel}">
+            <views:NetworkEntitiesView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:NetworkDisplayViewModel}">
+            <views:NetworkDisplayView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:MeasurmentGraphViewModel}">
+            <views:MeasurmentGraphView />
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Menu
+            Grid.Row="0"
+            Margin="5"
+            Background="White">
+            <MenuItem
+                Height="30"
+                Command="{Binding NavCommand}"
+                CommandParameter="entity"
+                Header="_Entity" />
+            <MenuItem
+                Height="30"
+                Command="{Binding NavCommand}"
+                CommandParameter="display"
+                Header="Display" />
+            <MenuItem
+                Height="30"
+                Command="{Binding NavCommand}"
+                CommandParameter="graph"
+                Header="_Graph" />
+        </Menu>
+        <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>

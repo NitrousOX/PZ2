@@ -37,6 +37,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,13 +57,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BindableBase.cs" />
+    <Compile Include="Helpers\BindableBase.cs" />
     <Compile Include="Model\ReactorTemp.cs" />
     <Compile Include="Model\ThermoType.cs" />
-    <Compile Include="MyICommand.cs" />
+    <Compile Include="Helpers\MyICommand.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="ViewModel\ReactorTempViewModel.cs" />
-    <Compile Include="VML\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\MeasurmentGraphViewModel.cs" />
+    <Compile Include="ViewModel\NetworkDisplayViewModel.cs" />
+    <Compile Include="ViewModel\NetworkEntitiesViewModel.cs" />
+    <Compile Include="Views\MeasurmentGraphView.xaml.cs">
+      <DependentUpon>MeasurmentGraphView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NetworkDisplayView.xaml.cs">
+      <DependentUpon>NetworkDisplayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NetworkEntitiesView.xaml.cs">
+      <DependentUpon>NetworkEntitiesView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -74,6 +86,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\MeasurmentGraphView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NetworkDisplayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NetworkEntitiesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -101,8 +125,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
