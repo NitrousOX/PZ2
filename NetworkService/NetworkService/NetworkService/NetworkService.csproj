@@ -58,13 +58,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helpers\BindableBase.cs" />
+    <Compile Include="Model\Measurement.cs" />
+    <Compile Include="Model\ReactorCollection.cs" />
     <Compile Include="Model\ReactorTemp.cs" />
     <Compile Include="Model\ThermoType.cs" />
     <Compile Include="Helpers\MyICommand.cs" />
+    <Compile Include="Model\ValueToColorConverter.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\MeasurmentGraphViewModel.cs" />
     <Compile Include="ViewModel\NetworkDisplayViewModel.cs" />
     <Compile Include="ViewModel\NetworkEntitiesViewModel.cs" />
+    <Compile Include="Views\Help.xaml.cs">
+      <DependentUpon>Help.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MeasurmentGraphView.xaml.cs">
       <DependentUpon>MeasurmentGraphView.xaml</DependentUpon>
     </Compile>
@@ -86,6 +92,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Help.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MeasurmentGraphView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -125,6 +135,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Log.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\RTD.jpg" />
+    <Resource Include="Resources\ThermoCouple.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

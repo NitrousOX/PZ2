@@ -11,15 +11,46 @@
     <UserControl.DataContext>
         <viewModel:NetworkEntitiesViewModel />
     </UserControl.DataContext>
-    
+
     <UserControl.Resources>
-        
+        <model:ValueToColorConverter x:Key="ValueToColor" />
+        <DataTemplate DataType="{x:Type model:ReactorTemp}">
+            <Border
+                BorderBrush="Gray"
+                BorderThickness="1"
+                CornerRadius="5">
+                <Grid Height="100">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70*"/>
+                        <ColumnDefinition Width="229*"/>
+                        <ColumnDefinition Width="299*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Text="{Binding Id}"/>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Stretch" Grid.RowSpan="2">
+                        <TextBlock x:Name="TitleBlock" Height="25" FontWeight="Bold" Text="{Binding Title}"/>
+                        <TextBlock x:Name="TypeBlock" Height="25" Text="{Binding TypeName}"/>
+                        <TextBlock x:Name="ValueBlock" Height="50" FontWeight="Bold" Foreground="{Binding Value, Converter={StaticResource ValueToColor}}" Text="{Binding Value}"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+        </DataTemplate>
     </UserControl.Resources>
 
-    <Grid Background="White">
+    <UserControl.InputBindings>
+        <KeyBinding Key="Delete" Command="{Binding DeleteEntityCommand}" />
+        <KeyBinding Key="R" Modifiers="Ctrl" Command="{Binding ClearFilterCommand}" />
+    </UserControl.InputBindings>
+
+    <Grid >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="143*"/>
-            <ColumnDefinition Width="82*"/>
+            <ColumnDefinition Width="49*"/>
+            <ColumnDefinition Width="26*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="90*"/>
@@ -27,9 +58,65 @@
             <RowDefinition Height="109*"/>
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
-        <Label Content="Radi1" HorizontalAlignment="Left" Margin="145,175,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <!--Filter-->
+        <Label Height="40" HorizontalAlignment="Left" Margin="25,0,0,35" Content="FILTER:" FontWeight="Bold" FontSize="25"/>
+        <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="564" Margin="0,35,0,0">
+            <ComboBox ToolTip="Select Type to filter"
+                      x:Name="TypeComboBoxFilter" Width="150" Margin="5"
+                      ItemsSource="{Binding Types}" 
+                      SelectedItem="{Binding Filterselectedtype}">
+            </ComboBox>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left">
+                <RadioButton GroupName="FilterOptions" Content="&lt;" Margin="5" 
+                         IsChecked="{Binding IsLessThanChecked}" BorderBrush="Black" />
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left">
+                <RadioButton GroupName="FilterOptions" Content=">" Margin="5"
+                         IsChecked="{Binding IsGreaterThanChecked}" BorderBrush="Black" />
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left">
+                <RadioButton GroupName="FilterOptions" Content="=" Margin="5" 
+                         IsChecked="{Binding IsEqualChecked}" BorderBrush="Black" />
+            </Border>
 
+            <TextBox x:Name="FilterTextBox" Width="100" Margin="5" 
+                     ToolTip="Enter value to compare"
+                     Text="{Binding FilterValue, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Content="Apply Filter" Margin="5" Command="{Binding ApplyFilterCommand}" />
+            <Button Content="Clear Filter" Margin="5" Command="{Binding ClearFilterCommand}" />
+        </StackPanel>
 
+        <ListView Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"
+                  x:Name="EntitiesListView"
+                  Background="Transparent"
+                  ItemsSource="{Binding FilteredView}"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  SelectedItem="{Binding SelectedEntity}"
+                  SelectionMode="Single">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Background" Value="White" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="0,5,5,5" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
 
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10">
+            <Label  Content="ID:" HorizontalAlignment="left" VerticalAlignment="Top"/>
+            <TextBox x:Name="IdTextBox" Margin="5" Text="{Binding AddIdText}" IsEnabled="False" />
+            <Label  Content="Name:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="NameTextBox" Margin="5" Text="{Binding AddTitleText}" />
+            <Label  Content="Type:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <ComboBox x:Name="TypeComboBoxAdd" Margin="5"
+                      ItemsSource="{Binding Types}" 
+                      SelectedItem="{Binding Addselectedtype}" />
+            <!-- Add other input fields as necessary -->
+            <Button Content="Add Entity"  Margin="5" Command="{Binding AddEntityCommand}" Height="43" FontSize="18" ToolTip="Add new entity to list"/>
+        </StackPanel>
+
+        <Button Grid.Row="2" Grid.Column="1" Content="Delete Entity" HorizontalAlignment="Center" VerticalAlignment="Top" ToolTip="Delete selected element from list"
+                Width="172" Margin="0,10,0,0" Command="{Binding DeleteEntityCommand}" Height="62" FontSize="23" />
     </Grid>
 </UserControl>

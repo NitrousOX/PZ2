@@ -14,6 +14,14 @@ namespace NetworkService.Model
         private double _value;
         private ThermoType _type;
 
+        public ReactorTemp(int id, string title, double value, ThermoType type)
+        {
+            _id = id;
+            _title = title;
+            _value = value;
+            _type = type;
+        }
+
         public int Id
         {
             get
@@ -54,8 +62,8 @@ namespace NetworkService.Model
             }
             set
             {
-                if (value < 250 || value > 350)
-                    throw new ArgumentException("The value of temp must be between 250 and 350");
+                //if (value < 250 || value > 350)
+                //    throw new ArgumentException("The value of temp must be between 250 and 350");
 
                 if (_value != value)
                 {
@@ -80,6 +88,14 @@ namespace NetworkService.Model
                 }
             }
         }
+        public string TypeName
+        {
+            get
+            {
+                return _type.Name;
+            }
+        }
+       
 
         public event PropertyChangedEventHandler PropertyChanged;
 

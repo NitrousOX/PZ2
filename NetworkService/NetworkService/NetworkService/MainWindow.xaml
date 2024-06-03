@@ -7,11 +7,19 @@
         xmlns:viewModel="clr-namespace:NetworkService.ViewModel"
         xmlns:views="clr-namespace:NetworkService.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="800" Width="600">
 
     <Window.DataContext>
         <viewModel:MainWindowViewModel />
     </Window.DataContext>
+
+    <Window.InputBindings>
+        <KeyBinding Gesture="CTRL+1" Command="{Binding NavCommand}" CommandParameter="entity" />
+        <KeyBinding Key="D2" Modifiers="Control" Command="{Binding NavCommand}" CommandParameter="display" />
+        <KeyBinding Key="D3" Modifiers="Control" Command="{Binding NavCommand}" CommandParameter="graph" />
+        <KeyBinding Key="F1" Command="{Binding HelpCommand}"/>
+        <KeyBinding Key="H" Modifiers="Ctrl" Command="{Binding HelpCommand}"/>
+    </Window.InputBindings>
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModel:NetworkEntitiesViewModel}">
@@ -32,8 +40,13 @@
 
         <Menu
             Grid.Row="0"
-            Margin="5"
-            Background="White">
+            Margin="5,5,5,5"
+            Background="#FF5F5D5D">
+            <Menu.ItemsPanel>
+        <ItemsPanelTemplate>
+            <DockPanel HorizontalAlignment="Stretch"/>
+        </ItemsPanelTemplate>
+    </Menu.ItemsPanel>
             <MenuItem
                 Height="30"
                 Command="{Binding NavCommand}"
@@ -49,6 +62,11 @@
                 Command="{Binding NavCommand}"
                 CommandParameter="graph"
                 Header="_Graph" />
+            <MenuItem
+                Height="30"
+                Command="{Binding HelpCommand}"
+                Header="Help" HorizontalAlignment="Right" Margin="0,0,7,0" />
+            
         </Menu>
         <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}" />
     </Grid>
