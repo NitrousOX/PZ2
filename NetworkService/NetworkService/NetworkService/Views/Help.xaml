@@ -91,12 +91,20 @@
             <TabItem Header="Graph">
                 <ScrollViewer>
                     <StackPanel Margin="10">
-                        <TextBlock FontSize="16" FontWeight="Bold">Feature List</TextBlock>
-                        <TextBlock Margin="5,10,5,5">1. Logging: Each new measurement is logged in a .txt file with a timestamp, value, and reference to the entity.</TextBlock>
-                        <TextBlock Margin="5,5,5,10">2. Network Entities View: Allows adding, deleting, and displaying entities in a table with real-time updates.</TextBlock>
-                        <TextBlock Margin="5">3. Network Display View: Visual representation of entities on a network canvas with Drag nDrop functionality.</TextBlock>
-                        <TextBlock Margin="5">4. Measurement Graph View: Displays historical data using charts, updated in real-time, with options to select entities and customize the graph.</TextBlock>
-                        <TextBlock Margin="5">5. Entity Modeling: Different types of entities with specific attributes and valid value ranges.</TextBlock>
+                        <TextBlock FontSize="30" FontWeight="Bold" Foreground="Red">Usage Instructions: Graph</TextBlock>
+                        <TextBlock Margin="10,5" FontStyle="Italic">To view data of specified entity, follow these steps:</TextBlock>
+
+                        <TextBlock FontSize="20" FontWeight="Bold" Margin="10,5">1. Select Entity to Observe:</TextBlock>
+                        <TextBlock Margin="10,5">Use the dropdown menu to select the entity you wish to observe. This will determine the data set that will be displayed in the graph.</TextBlock>
+
+                        <TextBlock FontSize="20" FontWeight="Bold" Margin="10,5">2. View Last 5 Measured Values:</TextBlock>
+                        <TextBlock Margin="10,5">The graph will automatically display the last 5 measured values for the selected entity. These values will help you understand recent trends and variations.</TextBlock>
+
+                        <TextBlock FontSize="20" FontWeight="Bold" Margin="10,5">3. Choose Color for Valid and Non-Valid Values:</TextBlock>
+                        <TextBlock Margin="10,5">You can customize the appearance of the graph by choosing different colors for valid and non-valid values. Use the color picker tool to select your preferred colors for better visual distinction.</TextBlock>
+
+                        <TextBlock FontSize="20" FontWeight="Bold" Margin="10,5">4. Review the Graph:</TextBlock>
+                        <TextBlock Margin="10,5">After selecting the entity and customizing the colors, review the graph to analyze the data. Ensure that the visual representation meets your requirements and helps in making informed decisions.</TextBlock>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>

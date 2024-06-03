@@ -53,17 +53,17 @@ namespace NetworkService.ViewModel
                         return true;
                     if (IsLessThanChecked)
                     {
-                        if (entity.Value < Double.Parse(FilterValue))
+                        if (entity.Id < Double.Parse(FilterValue))
                             return true;
                     }
                     else if (IsGreaterThanChecked)
                     {
-                        if (entity.Value > Double.Parse(FilterValue))
+                        if (entity.Id > Double.Parse(FilterValue))
                             return true;
                     }
                     else
                     {
-                        if (entity.Value == Double.Parse(FilterValue))
+                        if (entity.Id == Double.Parse(FilterValue))
                             return true;
                     }
                 }
@@ -212,10 +212,12 @@ namespace NetworkService.ViewModel
                 ReactorCollection.Entities.Add(new ReactorTemp(Int32.Parse(AddIdText), AddTitleText, rand.Next(250, 351), ReactorCollection.ThermoTypes["TC"]));
             GenerateNextId();
 
+            MessageBox.Show("Successfully added new entitty!", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Information);
+
         }
         private void DeleteEntity()
         {
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this entity?", "Confirmation", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this entity?", "Confirmation", MessageBoxButton.OKCancel, MessageBoxImage.Exclamation);
 
             if (result == MessageBoxResult.OK)
             {

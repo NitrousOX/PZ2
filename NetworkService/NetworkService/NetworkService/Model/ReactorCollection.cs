@@ -39,5 +39,15 @@ namespace NetworkService.Model
 
             return allId;
         }
+        public static List<string> GetAllTitles()
+        {
+            List<string> allTitles = new List<string>();
+            foreach (var entity in _entities)
+            {
+                allTitles.Add(entity.Title);
+            }
+
+            return allTitles;
+        }
     }
 }
