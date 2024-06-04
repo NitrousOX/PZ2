@@ -32,9 +32,9 @@
 
                     <TextBlock Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Text="{Binding Id}"/>
                     <StackPanel Grid.Column="1" VerticalAlignment="Stretch" Grid.RowSpan="2">
-                        <TextBlock x:Name="TitleBlock" Height="25" FontWeight="Bold" Text="{Binding Title}"/>
-                        <TextBlock x:Name="TypeBlock" Height="25" Text="{Binding TypeName}"/>
-                        <TextBlock x:Name="ValueBlock" Height="50" FontWeight="Bold" Foreground="{Binding Value, Converter={StaticResource ValueToColor}}" Text="{Binding Value}"/>
+                        <TextBlock x:Name="TitleBlock" Height="25" FontWeight="Bold" Text="{Binding Title}" FontSize="20"/>
+                        <TextBlock x:Name="TypeBlock" Height="25" Text="{Binding TypeName}" FontSize="15"/>
+                        <TextBlock x:Name="ValueBlock" Height="50" FontWeight="Bold" Foreground="{Binding Value, Converter={StaticResource ValueToColor}}" Text="{Binding Value}" FontSize="35"/>
                     </StackPanel>
                 </Grid>
             </Border>

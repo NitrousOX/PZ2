@@ -81,10 +81,32 @@
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="View">
+            <TabItem Header="Network View">
                 <ScrollViewer>
                     <StackPanel Margin="10">
+                        <TextBlock FontSize="30" FontWeight="Bold" Foreground="Red">Usage Instructions: Network View</TextBlock>
+                        <TextBlock Margin="10,5" FontStyle="Italic">To get inforation about the network, follow these steps:</TextBlock>
 
+                        <TextBlock FontSize="20" FontWeight="Bold" Margin="10,5">1. Drag and Drop Entities:</TextBlock>
+                        <TextBlock Margin="10,5">Select an entity from the TreeView control and drag it to any of the available canvas controls. The entity's ID and the last measured value will be displayed alongside its image on the canvas. To move an entity to a different canvas, simply drag it to the new position.</TextBlock>
+
+                        <TextBlock FontSize="20" FontWeight="Bold" Margin="10,5">2. Manage Entity States:</TextBlock>
+                        <TextBlock Margin="10,5">The application monitors the measured values of entities. If a value exceeds or falls below the set thresholds, the entity's visual representation will change to alert the user. Visual notifications can include color changes, status icons, or pop-up notifications.</TextBlock>
+
+                        <TextBlock FontSize="20" FontWeight="Bold" Margin="10,5">3. Connect Entities:</TextBlock>
+                        <TextBlock Margin="10,5">To connect entities, right click the starting entity and drag a line to the target entity. The line will represent the relationship and will move dynamically with the entities. To remove connections, either remove the entity from the canvas or delete it from the entity list, which will also remove all associated lines.</TextBlock>
+
+                        <TextBlock FontSize="20" FontWeight="Bold" Margin="10,5">4. TreeView and Canvas Interaction:</TextBlock>
+                        <TextBlock Margin="10,5">Entities dragged from the TreeView to the canvas are temporarily removed from the TreeView. To return an entity to the TreeView, drag it from the canvas back to the TreeView. This action will remove the entity from the canvas and reintegrate it into the TreeView list.</TextBlock>
+
+                        <TextBlock FontSize="20" FontWeight="Bold" Margin="10,5">5. Visual Feedback:</TextBlock>
+                        <TextBlock Margin="10,5">Monitor the entities for any visual changes indicating their state. The program will automatically update the visual representation based on the entity's latest measured values.</TextBlock>
+
+                        <TextBlock FontSize="20" FontWeight="Bold" Margin="10,5">6. Save and Restore View State:</TextBlock>
+                        <TextBlock Margin="10,5">The current layout and configuration of the canvas are preserved. When navigating away from the view and returning, all entities and connections will be as they were left.</TextBlock>
+
+                        <TextBlock FontSize="20" FontWeight="Bold" Margin="10,5">Tips:</TextBlock>
+                        <TextBlock Margin="10,5">Regularly review the visual state of the entities to ensure all are functioning within normal parameters. Utilize the dynamic repositioning feature to organize entities in a way that best represents your system/network. Make use of the connection lines to visualize and manage relationships between entities effectively.</TextBlock>
                     </StackPanel>
                 </ScrollViewer>
             </TabItem>

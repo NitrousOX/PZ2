@@ -10,17 +10,14 @@ namespace NetworkService.Model
     {
         private DateTime timestamp;
         private double value;
-        private bool isValid;
 
         public DateTime Timestamp { get => timestamp; set => timestamp = value; }
         public double Value { get => value; set => this.value = value; }
-        public bool IsValid { get => isValid; set => isValid = value; }
 
-        public Measurement(DateTime timestamp, double value, bool isValid)
+        public Measurement(DateTime timestamp, double value)
         {
             this.timestamp = timestamp;
             this.value = value;
-            this.isValid = isValid;
         }
     }
 }

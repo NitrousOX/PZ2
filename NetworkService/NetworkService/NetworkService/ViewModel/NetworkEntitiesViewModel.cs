@@ -14,7 +14,7 @@ namespace NetworkService.ViewModel
 {
     public class NetworkEntitiesViewModel : BindableBase
     {
-
+        public ObservableCollection<ReactorTemp> copyCollection { get; }
         public NetworkEntitiesViewModel()
         {
             AddEntityCommand = new MyICommand(AddEntity);
@@ -22,12 +22,45 @@ namespace NetworkService.ViewModel
             ApplyFilterCommand = new MyICommand(ApplyFilter);
             ClearFilterCommand = new MyICommand(ClearFilter);
 
-            FilteredView = CollectionViewSource.GetDefaultView(ReactorCollection.Entities);
+            copyCollection = new ObservableCollection<ReactorTemp>(ReactorCollection.Entities);
+            ReactorCollection.EntitiesChanged += ReactorCollection_EntitiesChanged;
+
+            FilteredView = CollectionViewSource.GetDefaultView(copyCollection);
             
             IsLessThanChecked = true;
             GenerateNextId();
         }
+        private void ReactorCollection_EntitiesChanged(object sender, EventArgs e)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                var tempCollection = new ObservableCollection<ReactorTemp>();
+                foreach (var entity in ReactorCollection.Entities)
+                {
+                    tempCollection.Add(entity);
+                    entity.PropertyChanged -= Entity_PropertyChanged; // Ensure not to subscribe multiple times
+                    entity.PropertyChanged += Entity_PropertyChanged; // Subscribe to PropertyChanged event of each entity
+                }
 
+                // Update copyCollection after enumeration completes
+                copyCollection.Clear();
+                foreach (var entity in tempCollection)
+                {
+                    copyCollection.Add(entity);
+                }
+            });
+        }
+        private void Entity_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            // If any property of a ReactorTemp object changes, update copyCollection
+            var changedEntity = (ReactorTemp)sender;
+            if (copyCollection.Contains(changedEntity))
+            {
+                // Remove and re-add to ensure the correct order
+                copyCollection.Remove(changedEntity);
+                copyCollection.Add(changedEntity);
+            }
+        }
         private void GenerateNextId()
         {
             List<int> all_id = ReactorCollection.GetAllId();
@@ -204,14 +237,19 @@ namespace NetworkService.ViewModel
         private void AddEntity()
         {
             if (addselectedtype == null || String.IsNullOrEmpty(AddTitleText))
+            {
+                MessageBox.Show("You must fill name and choose a type", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
+            }
+           
             Random rand = new Random();
             if (addselectedtype == "RTD")
-                ReactorCollection.Entities.Add(new ReactorTemp(Int32.Parse(AddIdText), AddTitleText, rand.Next(250, 351), ReactorCollection.ThermoTypes["RTD"]));
+                ReactorCollection.AddEntity(new ReactorTemp(Int32.Parse(AddIdText), AddTitleText, rand.Next(250, 351), ReactorCollection.ThermoTypes["RTD"]));
             else
-                ReactorCollection.Entities.Add(new ReactorTemp(Int32.Parse(AddIdText), AddTitleText, rand.Next(250, 351), ReactorCollection.ThermoTypes["TC"]));
+                ReactorCollection.AddEntity(new ReactorTemp(Int32.Parse(AddIdText), AddTitleText, rand.Next(250, 351), ReactorCollection.ThermoTypes["TC"]));
             GenerateNextId();
-
+            AddTitleText = String.Empty;
+            Addselectedtype = null;
             MessageBox.Show("Successfully added new entitty!", "Confirmation", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
@@ -221,7 +259,7 @@ namespace NetworkService.ViewModel
 
             if (result == MessageBoxResult.OK)
             {
-                ReactorCollection.Entities.Remove(selectedEntity);
+                ReactorCollection.RemoveEntity(selectedEntity);
                 GenerateNextId();
             }
             
@@ -234,6 +272,13 @@ namespace NetworkService.ViewModel
 
         private void ApplyFilter()
         {
+            if (!string.IsNullOrEmpty(FilterValue) && !int.TryParse(FilterValue, out _))
+            {
+                FilterValue = string.Empty;
+                MessageBox.Show("You can only enter digits for filtering", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
             FilteredView.Filter = FilterCollection;
             FilteredView.Refresh();
         }

@@ -62,6 +62,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helpers\BindableBase.cs" />
+    <Compile Include="Helpers\CanvasDropBehavior.cs" />
+    <Compile Include="Helpers\Connection.cs" />
+    <Compile Include="Helpers\SimpleFolderConverter.cs" />
+    <Compile Include="Helpers\TimeToXConverter.cs" />
+    <Compile Include="Helpers\TreeViewDragBehavior.cs" />
+    <Compile Include="Helpers\ValueToYConverter.cs" />
     <Compile Include="Model\Measurement.cs" />
     <Compile Include="Model\ReactorCollection.cs" />
     <Compile Include="Model\ReactorTemp.cs" />

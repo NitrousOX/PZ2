@@ -132,8 +132,8 @@ namespace NetworkService.ViewModel
                                 string entityName = parts[0];
                                 string value = parts[1];
 
-                                 // Upis u Log datoteku
-                                WriteToLogFile(entityName, value);
+                                // Upis u Log datoteku
+                                WriteToLogFile(incomming.Split(':')[0], value);
 
                                 // Ažuriranje potrebnih stvari u aplikaciji
                                 UpdateEntityValue(Int32.Parse(entityName), Double.Parse(value), incomming.Split(':')[0]);
@@ -180,13 +180,20 @@ namespace NetworkService.ViewModel
         private void LoadData()
         {
 
-            ReactorCollection.Entities.Add(new ReactorTemp(0,"Entity_0",305,ReactorCollection.ThermoTypes["RTD"]));
-            ReactorCollection.Entities.Add(new ReactorTemp(1, "Entity_1", 345, ReactorCollection.ThermoTypes["TC"]));
-            ReactorCollection.Entities.Add(new ReactorTemp(2, "Entity_2", 275, ReactorCollection.ThermoTypes["RTD"]));
-            ReactorCollection.Entities.Add(new ReactorTemp(3, "Entity_3", 251, ReactorCollection.ThermoTypes["TC"]));
-            ReactorCollection.Entities.Add(new ReactorTemp(4, "Entity_4", 275, ReactorCollection.ThermoTypes["RTD"]));
-            ReactorCollection.Entities.Add(new ReactorTemp(5, "Entity_5", 300, ReactorCollection.ThermoTypes["TC"]));
-            ReactorCollection.Entities.Add(new ReactorTemp(6, "Entity_6", 349, ReactorCollection.ThermoTypes["RTD"]));
+            ReactorCollection.AddEntity(new ReactorTemp(0,  "Entitet_0",305,ReactorCollection.ThermoTypes["RTD"]));
+            ReactorCollection.AddEntity(new ReactorTemp(1,  "Entitet_1", 345, ReactorCollection.ThermoTypes["TC"]));
+            ReactorCollection.AddEntity(new ReactorTemp(2,  "Entitet_2", 275, ReactorCollection.ThermoTypes["RTD"]));
+            ReactorCollection.AddEntity(new ReactorTemp(3,  "Entitet_3", 251, ReactorCollection.ThermoTypes["TC"]));
+            ReactorCollection.AddEntity(new ReactorTemp(4,  "Entitet_4", 275, ReactorCollection.ThermoTypes["RTD"]));
+            ReactorCollection.AddEntity(new ReactorTemp(5,  "Entitet_5", 300, ReactorCollection.ThermoTypes["TC"]));
+            ReactorCollection.AddEntity(new ReactorTemp(6,  "Entitet_6", 349, ReactorCollection.ThermoTypes["RTD"]));
+            ReactorCollection.AddEntity(new ReactorTemp(7,  "Entitet_7", 305, ReactorCollection.ThermoTypes["RTD"]));
+            ReactorCollection.AddEntity(new ReactorTemp(8,  "Entitet_8", 345, ReactorCollection.ThermoTypes["TC"]));
+            ReactorCollection.AddEntity(new ReactorTemp(9,  "Entitet_9", 275, ReactorCollection.ThermoTypes["RTD"]));
+            ReactorCollection.AddEntity(new ReactorTemp(10, "Entitet_10", 251, ReactorCollection.ThermoTypes["TC"]));
+            ReactorCollection.AddEntity(new ReactorTemp(11, "Entitet_11", 275, ReactorCollection.ThermoTypes["RTD"]));
+            ReactorCollection.AddEntity(new ReactorTemp(12, "Entitet_12", 300, ReactorCollection.ThermoTypes["TC"]));
+            ReactorCollection.AddEntity(new ReactorTemp(13, "Entitet_13", 349, ReactorCollection.ThermoTypes["RTD"]));
         }
     }
 }

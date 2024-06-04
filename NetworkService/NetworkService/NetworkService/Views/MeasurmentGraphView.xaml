@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:model="clr-namespace:NetworkService.Model"
              xmlns:viewModel="clr-namespace:NetworkService.ViewModel"
+             xmlns:helpers="clr-namespace:NetworkService.Helpers"
              xmlns:local="clr-namespace:NetworkService.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -12,7 +13,10 @@
         <viewModel:MeasurmentGraphViewModel />
     </UserControl.DataContext>
 
-    <Grid Background="White">
+    <UserControl.Resources>
+        <model:ValueToColorConverter x:Key="ValueToColor" />
+    </UserControl.Resources>
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -22,25 +26,53 @@
             <RowDefinition Height="23*"/>
         </Grid.RowDefinitions>
 
-        <Label HorizontalAlignment="Center" Content="Entitet" Margin="0,18,0,47" FontSize="20" FontWeight="Bold"/>
+        <Label HorizontalAlignment="Center" Content="Entity" Margin="0,18,0,47" FontSize="20" FontWeight="Bold"/>
         <ComboBox Width="200" Height="30" Margin="0,50,0,0" HorizontalAlignment="Center" FontSize="17" 
                       ItemsSource="{Binding EntityNames}" 
                       SelectedItem="{Binding SelectedEntity}">
         </ComboBox >
         <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label Content="Boje" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#FF0027FF" FontSize="20"/>
+            <Label Content="Color" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#FF0027FF" FontSize="20"/>
             <StackPanel Orientation="Horizontal" Grid.Column="1">
-                <Label Content="Validna boja" FontWeight="Bold"/>
+                <Label Content="Valid color" FontWeight="Bold"/>
                 <xctk:ColorPicker Width="50" Height="20" SelectedColor="{Binding SelectedGoodColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1">
-                <Label Content="Nevalidna boja" FontWeight="Bold"/>
+                <Label Content="Nonvalid color" FontWeight="Bold"/>
                 <xctk:ColorPicker Width="50" Height="20" SelectedColor="{Binding SelectedBadColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </StackPanel>
 
-       
+        <Canvas  Grid.Row="1" Grid.ColumnSpan="2" Background="#FF8EABC5">
+            <!-- Draw vertical lines -->
+            <Line X1="100" Y1="50" X2="100" Y2="300" Stroke="Black" StrokeThickness="2"/>
+            <Line X1="250" Y1="50" X2="250" Y2="300" Stroke="Black" StrokeThickness="2"/>
+            <Line X1="400" Y1="50" X2="400" Y2="300" Stroke="Black" StrokeThickness="2"/>
+            <Line X1="550" Y1="50" X2="550" Y2="300" Stroke="Black" StrokeThickness="2"/>
+            <Line X1="700" Y1="50" X2="700" Y2="300" Stroke="Black" StrokeThickness="2"/>
 
-        <Canvas Grid.Row="1" Grid.ColumnSpan="2" Background="AliceBlue"/>
+            <!-- Draw ellipses -->
+            <Ellipse Canvas.Left="65" Canvas.Top="{Binding Y1}" Width="70" Height="70" Fill="{Binding Value1, Converter={StaticResource ValueToColor}}" Stroke="Black" StrokeThickness="2"/>
+            <TextBlock Canvas.Left="80" Canvas.Top="{Binding Y1t}" Text="{Binding Value1}" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+            <Ellipse Canvas.Left="215" Canvas.Top="{Binding Y2}" Width="70" Height="70" Fill="{Binding Value2, Converter={StaticResource ValueToColor}}" Stroke="Black" StrokeThickness="2"/>
+            <TextBlock Canvas.Left="230" Canvas.Top="{Binding Y2t}" Text="{Binding Value2}" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+            <Ellipse Canvas.Left="365" Canvas.Top="{Binding Y3}" Width="70" Height="70" Fill="{Binding Value3, Converter={StaticResource ValueToColor}}" Stroke="Black" StrokeThickness="2"/>
+            <TextBlock Canvas.Left="380" Canvas.Top="{Binding Y3t}" Text="{Binding Value3}" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+            <Ellipse Canvas.Left="515" Canvas.Top="{Binding Y4}" Width="70" Height="70" Fill="{Binding Value4, Converter={StaticResource ValueToColor}}" Stroke="Black" StrokeThickness="2"/>
+            <TextBlock  Canvas.Left="530" Canvas.Top="{Binding Y4t}" Text="{Binding Value4}" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+            <Ellipse Canvas.Left="665" Canvas.Top="{Binding Y5}" Width="70" Height="70" Fill="{Binding Value5, Converter={StaticResource ValueToColor}}" Stroke="Black" StrokeThickness="2"/>
+            <TextBlock  Canvas.Left="680" Canvas.Top="{Binding Y5t}" Text="{Binding Value5}" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+            <!-- Draw text blocks -->
+            <TextBlock Canvas.Left="71" Canvas.Top="305" Text="{Binding Time1}" Height="31" Width="60" FontWeight="Bold" FontSize="20"/>
+            <TextBlock Canvas.Left="221" Canvas.Top="305" Text="{Binding Time2}" Height="31" Width="60" FontWeight="Bold" FontSize="20"/>
+            <TextBlock Canvas.Left="371" Canvas.Top="305" Text="{Binding Time3}" Height="31" Width="60" FontWeight="Bold" FontSize="20"/>
+            <TextBlock Canvas.Left="521" Canvas.Top="305" Text="{Binding Time4}" Height="31" Width="60" FontWeight="Bold" FontSize="20"/>
+            <TextBlock Canvas.Left="671" Canvas.Top="305" Text="{Binding Time5}" Height="31" Width="60" FontWeight="Bold" FontSize="20"/>
+        </Canvas>
     </Grid>
 </UserControl>
