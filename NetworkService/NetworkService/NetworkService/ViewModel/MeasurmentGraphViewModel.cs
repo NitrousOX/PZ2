@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -19,10 +20,12 @@ namespace NetworkService.ViewModel
     public class MeasurmentGraphViewModel : BindableBase
     {
         public List<Measurement> measurements;
+        public string currntEnt = "Entitet_0";
         public MeasurmentGraphViewModel()
         {
             SelectedBadColor = ValueToColorConverter.ErrorColor;
             SelectedGoodColor = ValueToColorConverter.AcceptableColor;
+            ReactorCollection.EntitiesChanged += ReactorCollection_EntitiesChanged;
         }
 
         public double MapValue(double x)
@@ -30,19 +33,21 @@ namespace NetworkService.ViewModel
             return 230 - ((x - 150) * (230 - 0) / (450 - 150)) + 0;
         }
 
-        public void UpdateValues()
+        public void UpdateValues(string name)
         {
-            Time5 = measurements[4].Timestamp.ToString("HH:mm");
-            Time4 = measurements[3].Timestamp.ToString("HH:mm");
-            Time3 = measurements[2].Timestamp.ToString("HH:mm");
-            Time2 = measurements[1].Timestamp.ToString("HH:mm");
-            Time1 = measurements[0].Timestamp.ToString("HH:mm");
+            measurements = NewEntityLoad(name);
+            int index = measurements.Count - 1;
+            Time5 = measurements[index].Timestamp.ToString("mm:ss");
+            Time4 = measurements[index-1].Timestamp.ToString("mm:ss");
+            Time3 = measurements[index-2].Timestamp.ToString("mm:ss");
+            Time2 = measurements[index-3].Timestamp.ToString("mm:ss");
+            Time1 = measurements[index-4].Timestamp.ToString("mm:ss");
 
-            Y5 = MapValue(measurements[4].Value);
-            Y4 = MapValue(measurements[3].Value);
-            Y3 = MapValue(measurements[2].Value);
-            Y2 = MapValue(measurements[1].Value);
-            Y1 = MapValue(measurements[0].Value);
+            Y5 = MapValue(measurements[index].Value);
+            Y4 = MapValue(measurements[index-1].Value);
+            Y3 = MapValue(measurements[index-2].Value);
+            Y2 = MapValue(measurements[index-3].Value);
+            Y1 = MapValue(measurements[index-4].Value);
 
             Y5t = Y5 + 20;
             Y4t = Y4 + 20;
@@ -50,11 +55,11 @@ namespace NetworkService.ViewModel
             Y2t = Y2 + 20;
             Y1t = Y1 + 20;
 
-            Value5 = measurements[4].Value;
-            Value4 = measurements[3].Value;
-            Value3 = measurements[2].Value;
-            Value2 = measurements[1].Value;
-            Value1 = measurements[0].Value;
+            Value5 = measurements[index].Value;
+            Value4 = measurements[index-1].Value;
+            Value3 = measurements[index-2].Value;
+            Value2 = measurements[index-3].Value;
+            Value1 = measurements[index-4].Value;
         }
         public void MoveListLeft()
         {
@@ -325,8 +330,8 @@ namespace NetworkService.ViewModel
             {
                 if (!String.Equals(selectedEntity, value))
                     selectedEntity = value;
-                measurements = NewEntityLoad(value);
-                UpdateValues();
+                UpdateValues(value);
+                currntEnt = value;
                 OnPropertyChanged(nameof(selectedEntity));
             }
         }
@@ -376,6 +381,27 @@ namespace NetworkService.ViewModel
 
             return lastFiveMeasurements;
         }
-       
+
+        private void ReactorCollection_EntitiesChanged(object sender, EventArgs e)
+        {
+            UpdateValues(currntEnt);
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                var tempCollection = new ObservableCollection<ReactorTemp>();
+                foreach (var entity in ReactorCollection.Entities)
+                {
+                    tempCollection.Add(entity);
+                    entity.PropertyChanged -= Entity_PropertyChanged; // Ensure not to subscribe multiple times
+                    entity.PropertyChanged += Entity_PropertyChanged; // Subscribe to PropertyChanged event of each entity
+                }
+
+            });
+        }
+        private void Entity_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            // If any property of a ReactorTemp object changes, update copyCollection
+            
+        }
+
     }
 }
