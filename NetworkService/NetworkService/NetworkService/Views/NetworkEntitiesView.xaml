@@ -86,13 +86,18 @@
             <Button Content="Clear Filter" Margin="5" Command="{Binding ClearFilterCommand}" />
         </StackPanel>
 
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+            <TextBlock Text="ID:" FontSize="24" />
+            <TextBlock Text="Info:" FontSize="24" Margin="77,0,0,0" />
+        </StackPanel>
         <ListView Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"
                   x:Name="EntitiesListView"
                   Background="Transparent"
                   ItemsSource="{Binding FilteredView}"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   SelectedItem="{Binding SelectedEntity}"
-                  SelectionMode="Single">
+                  SelectionMode="Single" Margin="0,35,0,0"
+                >
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Background" Value="White" />

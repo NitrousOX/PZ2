@@ -47,10 +47,10 @@
             <ColumnDefinition Width="383*"/>
         </Grid.ColumnDefinitions>
         
-        <TreeView Grid.Column="0" ItemsSource="{Binding ReactorTempsView}" helpers:TreeViewDragBehavior.DragEnabled="True" >
+        <TreeView ToolTip="Drag from treeView to right screen" Grid.Column="0" ItemsSource="{Binding ReactorTempsView}" helpers:TreeViewDragBehavior.DragEnabled="True" >
         </TreeView>
         
-        <Canvas Grid.Column="1" helpers:CanvasDropBehavior.DropEnabled="True" >
+        <Canvas Grid.Column="1" ToolTip="Drag elements" helpers:CanvasDropBehavior.DropEnabled="True" >
             <Canvas.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>

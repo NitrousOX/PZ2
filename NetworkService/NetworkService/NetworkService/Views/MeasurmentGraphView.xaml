@@ -27,7 +27,7 @@
         </Grid.RowDefinitions>
 
         <Label HorizontalAlignment="Center" Content="Entity" Margin="0,18,0,47" FontSize="20" FontWeight="Bold"/>
-        <ComboBox Width="200" Height="30" Margin="0,50,0,0" HorizontalAlignment="Center" FontSize="17" 
+        <ComboBox ToolTip="Select and entity to show" Width="200" Height="30" Margin="0,50,0,0" HorizontalAlignment="Center" FontSize="17" 
                       ItemsSource="{Binding EntityNames}" 
                       SelectedItem="{Binding SelectedEntity}">
         </ComboBox >
@@ -35,15 +35,15 @@
             <Label Content="Color" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#FF0027FF" FontSize="20"/>
             <StackPanel Orientation="Horizontal" Grid.Column="1">
                 <Label Content="Valid color" FontWeight="Bold"/>
-                <xctk:ColorPicker Width="50" Height="20" SelectedColor="{Binding SelectedGoodColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <xctk:ColorPicker ToolTip="Choose a color for valid values" Width="50" Height="20" SelectedColor="{Binding SelectedGoodColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1">
                 <Label Content="Nonvalid color" FontWeight="Bold"/>
-                <xctk:ColorPicker Width="50" Height="20" SelectedColor="{Binding SelectedBadColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <xctk:ColorPicker ToolTip="Choose a color for nonvalid values"  Width="50" Height="20" SelectedColor="{Binding SelectedBadColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
         </StackPanel>
 
-        <Canvas  Grid.Row="1" Grid.ColumnSpan="2" Background="#FF8EABC5">
+        <Canvas ToolTip="Grph showing the selected entity" Grid.Row="1" Grid.ColumnSpan="2" Background="#FF8EABC5">
             <!-- Draw vertical lines -->
             <Line X1="100" Y1="50" X2="100" Y2="300" Stroke="Black" StrokeThickness="2"/>
             <Line X1="250" Y1="50" X2="250" Y2="300" Stroke="Black" StrokeThickness="2"/>
